@@ -39,6 +39,13 @@ npx serve .
 # 或
 python -m http.server 8080
 
+**⭐ 支持一下**
+
+*如果这个项目对你有帮助，欢迎点个 Star ⭐ 或在 GitHub 上关注我们。*
+
+*Made with ❤️ for teachers and students.*
+
+
 
 candy535/535
 ├── index.html      # 完整应用（HTML + CSS + JS 单文件）
