@@ -5,15 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>智能点名系统 · 可调号数 · 多人同抽</title>
 
-<!-- ===== 标签页图标：把 href 换成你的图床直链即可 ===== -->
-<link rel="icon" type="image/x-icon" href="https://xiangqiai.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="https://xiangqiai.com/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="https://xiangqiai.com/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="https://xiangqiai.com/favicon.ico">
-<!-- ================================================ -->
+<link rel="icon" type="image/x-icon" href="https://expert1.de5.net/e5ya3bz.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://expert1.de5.net/e5ya3bz.ico">
+<link rel="icon" type="image/svg+xml" href="https://expert1.de5.net/e5ya3bz.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="https://expert1.de5.net/e5ya3bz.ico">
 
 <style>
-/* ============ 基础 ============ */
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --cyan:#22d3ee;
@@ -59,7 +56,6 @@ body::after{
 @keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-110px,-60px) scale(1.12)}}
 @keyframes float3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-42%,-58%) scale(1.3)}}
 
-/* ============ 布局 ============ */
 .app{height:100vh;display:flex;flex-direction:column;}
 
 .topbar{display:flex;align-items:center;gap:22px;padding:16px 26px 14px;flex-shrink:0;}
@@ -70,8 +66,7 @@ body::after{
   font-size:20px;color:#fff;
   background:linear-gradient(135deg,#22d3ee,#a855f7 55%,#ec4899);
   box-shadow:0 8px 28px -6px rgba(168,85,247,.85), inset 0 1px 0 rgba(255,255,255,.35);
-  position:relative;
-  overflow:hidden;
+  position:relative;overflow:hidden;
 }
 .brand-icon::after{
   content:'';position:absolute;inset:0;border-radius:14px;
@@ -138,7 +133,6 @@ main{
 .panel-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.13);border-radius:3px;}
 .panel-body::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.24);}
 
-/* ============ 号数范围设置 ============ */
 .range-box{
   padding:13px 12px 12px;flex-shrink:0;
   border-bottom:1px solid rgba(255,255,255,.06);
@@ -162,8 +156,7 @@ main{
   color:#67e8f9;font-size:.95rem;font-weight:800;
   text-align:center;outline:none;
   font-family:inherit;font-variant-numeric:tabular-nums;
-  transition:.22s;
-  -moz-appearance:textfield;
+  transition:.22s;-moz-appearance:textfield;
 }
 .range-row input::-webkit-outer-spin-button,
 .range-row input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
@@ -188,7 +181,6 @@ main{
 }
 .range-btn:active{transform:scale(.975);}
 
-/* 单个添加 */
 .add-row{display:flex;gap:8px;padding:10px 12px 2px;flex-shrink:0;}
 .add-row input{
   flex:1;min-width:0;
@@ -215,7 +207,6 @@ main{
 .add-row button:hover{transform:translateY(-2px);box-shadow:0 10px 26px -6px rgba(168,85,247,1);}
 .add-row button:active{transform:scale(.94);}
 
-/* 号数列表 */
 .student-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
 .student{
   display:flex;align-items:center;gap:10px;
@@ -226,50 +217,35 @@ main{
 }
 .student:hover{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.08);transform:translateX(3px);}
 .student.picked{background:linear-gradient(90deg,rgba(34,211,238,.10),rgba(34,211,238,.01));}
-.student .idx{
-  font-size:.65rem;color:#475569;width:20px;
-  font-variant-numeric:tabular-nums;flex-shrink:0;
-}
-.student .sname{
-  flex:1;font-size:.88rem;font-weight:700;color:#e2e8f0;
+.student .idx{font-size:.65rem;color:#475569;width:20px;
+  font-variant-numeric:tabular-nums;flex-shrink:0;}
+.student .sname{flex:1;font-size:.88rem;font-weight:700;color:#e2e8f0;
   font-variant-numeric:tabular-nums;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-}
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .student .sname em{font-style:normal;font-size:.7rem;color:#64748b;font-weight:500;margin-left:2px;}
-.student .dot{
-  width:6px;height:6px;border-radius:50%;background:#22d3ee;
-  box-shadow:0 0 8px rgba(34,211,238,.9);flex-shrink:0;
-}
-.student .badge{
-  font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:999px;
+.student .dot{width:6px;height:6px;border-radius:50%;background:#22d3ee;
+  box-shadow:0 0 8px rgba(34,211,238,.9);flex-shrink:0;}
+.student .badge{font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:999px;
   background:linear-gradient(135deg,rgba(34,211,238,.22),rgba(168,85,247,.22));
   color:#a5f3fc;border:1px solid rgba(34,211,238,.3);
-  font-variant-numeric:tabular-nums;flex-shrink:0;
-}
-.student .del{
-  width:22px;height:22px;border-radius:7px;border:none;cursor:pointer;
+  font-variant-numeric:tabular-nums;flex-shrink:0;}
+.student .del{width:22px;height:22px;border-radius:7px;border:none;cursor:pointer;
   background:rgba(244,63,94,.14);color:#fb7185;
   font-size:14px;line-height:1;opacity:0;transition:.2s;
-  display:grid;place-items:center;flex-shrink:0;
-}
+  display:grid;place-items:center;flex-shrink:0;}
 .student:hover .del{opacity:1;}
 .student .del:hover{background:rgba(244,63,94,.35);color:#fff;}
 
-.panel-foot{
-  display:flex;gap:8px;padding:11px 12px;flex-shrink:0;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.mini-btn{
-  flex:1;padding:9px;border-radius:11px;cursor:pointer;
+.panel-foot{display:flex;gap:8px;padding:11px 12px;flex-shrink:0;
+  border-top:1px solid rgba(255,255,255,.06);}
+.mini-btn{flex:1;padding:9px;border-radius:11px;cursor:pointer;
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.09);
   color:#94a3b8;font-size:.74rem;font-weight:600;
-  transition:.2s;font-family:inherit;letter-spacing:.05em;
-}
+  transition:.2s;font-family:inherit;letter-spacing:.05em;}
 .mini-btn:hover{background:rgba(255,255,255,.11);color:#fff;transform:translateY(-1px);}
 .mini-btn.danger:hover{background:rgba(244,63,94,.18);color:#fda4af;border-color:rgba(244,63,94,.3);}
 
-/* ============ 舞台 ============ */
 .stage{
   position:relative;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -297,32 +273,25 @@ main{
 .result-box{
   --size: clamp(3.4rem, 13vw, 9rem);
   display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
-  gap:.12em .38em;
-  line-height:1.1;
+  gap:.12em .38em;line-height:1.1;
 }
 .result-item{
   font-size:var(--size);
-  font-weight:900;
-  letter-spacing:.02em;
-  line-height:1.08;
+  font-weight:900;letter-spacing:.02em;line-height:1.08;
   font-variant-numeric:tabular-nums;
   background:linear-gradient(180deg,#ffffff 0%,#c7d2fe 60%,#a5b4fc 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 0 30px rgba(129,140,248,.45));
-  transition:filter .3s;
-  white-space:nowrap;
+  transition:filter .3s;white-space:nowrap;
 }
-.result-item .unit{
-  font-size:.32em;font-weight:700;letter-spacing:.04em;
-  margin-left:.06em;opacity:.8;vertical-align:.14em;
-}
+.result-item .unit{font-size:.32em;font-weight:700;letter-spacing:.04em;
+  margin-left:.06em;opacity:.8;vertical-align:.14em;}
 .result-box.ready .result-item{
   font-size:clamp(1.6rem, 5vw, 3rem);
   letter-spacing:.18em;
   background:linear-gradient(180deg,#94a3b8,#475569);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:none;
-  font-weight:800;
+  filter:none;font-weight:800;
 }
 .result-box.rolling .result-item{
   animation:rollJump .11s infinite alternate;
@@ -368,6 +337,22 @@ main{
 .pick-btn:hover{transform:translateY(-3px);}
 .pick-btn:active{transform:translateY(1px) scale(.98);}
 .pick-btn:disabled{cursor:not-allowed;animation:none;box-shadow:0 10px 34px -12px rgba(168,85,247,.45);}
+
+/* 手动模式正在滚动 —— 变成红色停止 */
+.pick-btn.stopping{
+  background:linear-gradient(135deg,#f472b6,#ef4444 55%,#f97316);
+  animation:stopGlow 1s ease-in-out infinite;
+}
+@keyframes stopGlow{
+  0%,100%{box-shadow:0 12px 46px -10px rgba(239,68,68,.75), 0 0 0 0 rgba(239,68,68,.55);}
+  50%{box-shadow:0 12px 56px -6px rgba(239,68,68,1), 0 0 0 18px rgba(239,68,68,0);}
+}
+.pick-btn.stopping .pick-btn-inner{
+  background:rgba(24,6,12,.9);
+  text-shadow:0 0 22px rgba(244,63,94,.85);
+}
+.pick-btn.stopping:hover .pick-btn-inner{background:rgba(24,6,12,.7);}
+
 .pick-btn-inner{
   display:block;padding:17px 62px;border-radius:999px;
   background:rgba(9,9,22,.88);
@@ -383,7 +368,6 @@ main{
   flex-wrap:wrap;justify-content:center;
 }
 
-/* 人数选择器 */
 .count-picker{
   display:flex;align-items:center;gap:9px;
   padding:6px 12px;border-radius:14px;
@@ -408,7 +392,6 @@ main{
   text-shadow:0 0 14px rgba(34,211,238,.5);
 }
 
-/* 开关 */
 .switch{display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none;}
 .switch input{display:none;}
 .slider{
@@ -427,7 +410,13 @@ main{
 .switch-label{font-size:.78rem;color:#94a3b8;letter-spacing:.06em;}
 .switch:hover .switch-label{color:#e2e8f0;}
 
-/* GitHub 关注按钮 */
+/* 手动模式开关的强调色 */
+.switch.manual input:checked + .slider{
+  background:linear-gradient(135deg,#f472b6,#ef4444);
+  box-shadow:0 0 18px rgba(239,68,68,.55);
+}
+.switch.manual:hover .switch-label{color:#fca5a5;}
+
 .github-follow{
   display:inline-flex;align-items:center;gap:9px;
   padding:9px 22px;border-radius:999px;
@@ -439,22 +428,18 @@ main{
   text-decoration:none;
   transition:.26s cubic-bezier(.2,1,.4,1);
   backdrop-filter:blur(10px);
-  position:relative;
-  overflow:hidden;
+  position:relative;overflow:hidden;
 }
 .github-follow::before{
-  content:'';
-  position:absolute;inset:0;
+  content:'';position:absolute;inset:0;
   background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.12) 50%, transparent 70%);
-  transform:translateX(-120%);
-  transition:transform .7s ease;
+  transform:translateX(-120%);transition:transform .7s ease;
 }
 .github-follow:hover::before{transform:translateX(120%);}
 .github-follow:hover{
   background:linear-gradient(135deg, rgba(34,211,238,.16), rgba(168,85,247,.16));
   border-color:rgba(34,211,238,.45);
-  color:#fff;
-  transform:translateY(-2px);
+  color:#fff;transform:translateY(-2px);
   box-shadow:0 12px 30px -12px rgba(34,211,238,.85);
 }
 .github-follow:active{transform:translateY(0) scale(.97);}
@@ -464,7 +449,6 @@ main{
 }
 .github-follow:hover svg{transform:rotate(-10deg) scale(1.15);}
 
-/* 历史 */
 .hist-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
 .hist-item{
   display:flex;align-items:center;gap:10px;
@@ -478,11 +462,9 @@ main{
   border-left-color:#fbbf24;
 }
 @keyframes slideIn{from{opacity:0;transform:translateX(-12px);}to{opacity:1;transform:none;}}
-.hist-item .hname{
-  flex:1;font-size:.88rem;font-weight:700;color:#e2e8f0;
+.hist-item .hname{flex:1;font-size:.88rem;font-weight:700;color:#e2e8f0;
   font-variant-numeric:tabular-nums;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-}
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .hist-item:first-child .hname{color:#fde68a;}
 .hist-item .hname em{font-style:normal;font-size:.7rem;color:#64748b;font-weight:500;margin-left:2px;}
 .hist-item:first-child .hname em{color:#b45309;}
@@ -491,7 +473,6 @@ main{
 .empty{text-align:center;color:#3f4a5e;font-size:.76rem;padding:34px 12px;line-height:2;letter-spacing:.06em;}
 .empty .big{font-size:1.8rem;display:block;margin-bottom:8px;opacity:.45;}
 
-/* 排行 */
 .rank-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
 .rank-item{display:flex;align-items:center;gap:10px;padding:7px 11px;border-radius:11px;
   background:rgba(255,255,255,.025);transition:.2s;}
@@ -510,7 +491,6 @@ main{
 .rank-count{font-size:.7rem;color:#64748b;width:16px;text-align:right;
   font-variant-numeric:tabular-nums;flex-shrink:0;}
 
-/* 模态框 */
 .modal-mask{
   position:fixed;inset:0;z-index:200;
   background:rgba(4,4,12,.72);backdrop-filter:blur(10px);
@@ -554,7 +534,6 @@ main{
 }
 .btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px -10px rgba(168,85,247,1);}
 
-/* Toast */
 .toast{
   position:fixed;left:50%;bottom:44px;transform:translate(-50%,20px);
   padding:12px 26px;border-radius:14px;
@@ -570,7 +549,6 @@ main{
 
 #fx{position:fixed;inset:0;pointer-events:none;z-index:150;}
 
-/* 响应式 */
 @media (max-width:1180px){
   body{overflow:auto;}
   .app{height:auto;min-height:100vh;}
@@ -591,7 +569,6 @@ main{
 <div class="orb c"></div>
 
 <div class="app">
-  <!-- 顶栏 -->
   <header class="topbar">
     <div class="brand">
       <div class="brand-icon">✦</div>
@@ -612,7 +589,6 @@ main{
   </header>
 
   <main>
-    <!-- 左：号数名单 + 范围设置 -->
     <aside class="panel">
       <div class="panel-head">
         <h3>号数名单</h3>
@@ -645,7 +621,6 @@ main{
       </div>
     </aside>
 
-    <!-- 中：舞台 -->
     <section class="stage">
       <div class="ring r1"></div>
       <div class="ring r2"></div>
@@ -661,6 +636,7 @@ main{
         <button class="pick-btn" id="pickBtn">
           <span class="pick-btn-inner" id="pickBtnText">开始点名</span>
         </button>
+
         <div class="controls-row">
           <div class="count-picker">
             <span class="cp-label">抽取</span>
@@ -674,9 +650,14 @@ main{
             <span class="slider"></span>
             <span class="switch-label">不重复模式</span>
           </label>
+          <!-- ★ 新增：手动停止模式开关 -->
+          <label class="switch manual">
+            <input type="checkbox" id="manualMode">
+            <span class="slider"></span>
+            <span class="switch-label">手动停止</span>
+          </label>
         </div>
 
-        <!-- GitHub 关注 -->
         <a class="github-follow" href="https://github.com/" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
@@ -686,7 +667,6 @@ main{
       </div>
     </section>
 
-    <!-- 右：记录 & 排行 -->
     <aside class="panel">
       <div class="panel-head">
         <h3>点名记录</h3>
@@ -705,7 +685,6 @@ main{
   </main>
 </div>
 
-<!-- 批量导入模态框 -->
 <div class="modal-mask" id="modalMask">
   <div class="modal">
     <h3>批量导入号数</h3>
@@ -724,13 +703,11 @@ main{
 <script>
 'use strict';
 
-/* ==================== 常量 ==================== */
 const MAX_NUM = 999;
 const DEFAULT_START = 1;
 const DEFAULT_END = 40;
 const MAX_PICK = 10;
 
-/* ==================== 状态 ==================== */
 const state = {
   students: [],
   history: [],
@@ -740,13 +717,13 @@ const state = {
   pickCount: 1,
   picking: false,
   noRepeat: true,
+  manual: false,   // ★ 手动停止模式
   sound: true
 };
 
 let uid = 1;
-const STORE_KEY = 'smart-rollcall-num-v3';
+const STORE_KEY = 'smart-rollcall-num-v5';
 
-/* ==================== 工具 ==================== */
 const $ = id => document.getElementById(id);
 
 function toast(msg){
@@ -778,7 +755,7 @@ function sample(arr, n){
   return a.slice(0, n);
 }
 
-/* ==================== 音效 ==================== */
+/* ============ 音效 ============ */
 let actx = null;
 function initAudio(){
   try{
@@ -810,7 +787,7 @@ function winSound(n){
   }
 }
 
-/* ==================== 粒子特效 ==================== */
+/* ============ 粒子特效 ============ */
 const canvas = $('fx');
 const ctx = canvas.getContext('2d');
 let W = 0, H = 0, DPR = 1;
@@ -854,16 +831,11 @@ function loopFX(){
   for(let i = particles.length - 1; i >= 0; i--){
     const p = particles[i];
     p.vy += 0.24;
-    p.vx *= 0.991;
-    p.vy *= 0.991;
-    p.x += p.vx;
-    p.y += p.vy;
+    p.vx *= 0.991; p.vy *= 0.991;
+    p.x += p.vx; p.y += p.vy;
     p.rot += p.vr;
     p.life -= p.decay;
-    if(p.life <= 0 || p.y > H + 60){
-      particles.splice(i, 1);
-      continue;
-    }
+    if(p.life <= 0 || p.y > H + 60){ particles.splice(i, 1); continue; }
     ctx.save();
     ctx.globalAlpha = Math.max(0, Math.min(1, p.life));
     ctx.translate(p.x, p.y);
@@ -882,7 +854,7 @@ function loopFX(){
 }
 loopFX();
 
-/* ==================== 数据存取 ==================== */
+/* ============ 数据存取 ============ */
 function save(){
   try{
     localStorage.setItem(STORE_KEY, JSON.stringify({
@@ -893,6 +865,7 @@ function save(){
       rangeEnd: state.rangeEnd,
       pickCount: state.pickCount,
       noRepeat: state.noRepeat,
+      manual: state.manual,
       sound: state.sound,
       uid
     }));
@@ -909,9 +882,7 @@ function buildRange(start, end){
 
 function load(){
   let data = null;
-  try{
-    data = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
-  }catch(e){}
+  try{ data = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); }catch(e){}
 
   if(data && Array.isArray(data.students) && data.students.length){
     state.students = data.students.map(s => ({
@@ -926,6 +897,7 @@ function load(){
     state.rangeEnd = Number(data.rangeEnd) || DEFAULT_END;
     state.pickCount = Math.max(1, Math.min(MAX_PICK, Number(data.pickCount) || 1));
     state.noRepeat = data.noRepeat !== false;
+    state.manual = data.manual === true;
     state.sound = data.sound !== false;
     uid = Number(data.uid) || (state.students.length + 1);
     sortStudents();
@@ -938,7 +910,7 @@ function sortStudents(){
   state.students.sort((a, b) => a.num - b.num);
 }
 
-/* ==================== 渲染 ==================== */
+/* ============ 渲染 ============ */
 const resultBox  = $('resultBox');
 const elNameSub  = $('nameSub');
 const elPickBtn  = $('pickBtn');
@@ -1108,7 +1080,7 @@ function renderAll(){
   renderRank();
 }
 
-/* ==================== 舞台结果渲染 ==================== */
+/* ============ 舞台渲染 ============ */
 function setResultSize(n){
   let size;
   if(n <= 1)      size = 'clamp(3.4rem, 13vw, 9rem)';
@@ -1150,7 +1122,7 @@ function showReady(){
   resultBox.appendChild(d);
 }
 
-/* ==================== 号数管理 ==================== */
+/* ============ 号数管理 ============ */
 function addNumber(num){
   num = Math.floor(Number(num));
   if(!num || num < 1 || num > MAX_NUM) return false;
@@ -1177,6 +1149,8 @@ function resetStage(){
   showReady();
   elNameSub.textContent = '';
   elNameSub.className = 'name-sub';
+  elPickBtn.classList.remove('stopping');
+  elPickBtn.disabled = false;
   elPickTxt.textContent = '开始点名';
 }
 
@@ -1219,7 +1193,7 @@ function applyRange(){
   toast(`✓ 已生成 ${a} - ${b} 号，共 ${count} 个`);
 }
 
-/* ==================== 抽取逻辑 ==================== */
+/* ============ 抽取逻辑 ============ */
 function pickCandidates(n){
   const pool = state.students;
   if(!pool.length) return [];
@@ -1227,7 +1201,6 @@ function pickCandidates(n){
 
   if(state.noRepeat){
     let fresh = pool.filter(s => !s.pickedThisRound);
-
     if(fresh.length < n){
       pool.forEach(s => { s.pickedThisRound = false; });
       state.round++;
@@ -1236,7 +1209,6 @@ function pickCandidates(n){
     }
     return sample(fresh, n);
   }
-
   return sample(pool, n);
 }
 
@@ -1259,18 +1231,26 @@ function startRoll(){
     toast('名单只有 ' + pool.length + ' 个号数，本次抽取 ' + pool.length + ' 个');
   }
 
-  const targets = pickCandidates(n);
-  if(!targets.length) return;
-
   state.picking = true;
 
   buildSlots(n);
   resultBox.classList.add('rolling');
-  elNameSub.textContent = '正在随机抽取…';
-  elNameSub.className = 'name-sub live';
 
-  elPickBtn.disabled = true;
-  elPickTxt.textContent = '抽取中…';
+  if(state.manual){
+    // 手动模式：无限滚动，点击停止才停
+    elNameSub.textContent = '点击「停止」定格结果';
+    elNameSub.className = 'name-sub live';
+    elPickBtn.classList.add('stopping');
+    elPickBtn.disabled = false;   // 可点击停止
+    elPickTxt.textContent = '停 止';
+  }else{
+    // 自动模式：3 秒后自动定格
+    elNameSub.textContent = '正在随机抽取…';
+    elNameSub.className = 'name-sub live';
+    elPickBtn.classList.remove('stopping');
+    elPickBtn.disabled = true;    // 滚动中禁用
+    elPickTxt.textContent = '抽取中…';
+  }
 
   const duration = 3000;
   let elapsed = 0;
@@ -1278,6 +1258,8 @@ function startRoll(){
   let tick = 0;
 
   function step(){
+    if(!state.picking) return;
+
     const randoms = sample(pool, n);
     setSlotValues(randoms.map(s => s.num));
 
@@ -1286,23 +1268,40 @@ function startRoll(){
       tone(1000 + Math.random() * 600, 0.028, 'square', 0.012);
     }
 
-    elapsed += interval;
-    if(elapsed >= duration){
-      finishRoll(targets);
-      return;
+    if(!state.manual){
+      // 自动模式：累积时间，到点就停
+      elapsed += interval;
+      if(elapsed >= duration){
+        stopRoll();
+        return;
+      }
+      const p = elapsed / duration;
+      interval = 38 + 310 * Math.pow(p, 3.2);
     }
-    const p = elapsed / duration;
-    interval = 38 + 310 * Math.pow(p, 3.2);
+
     rollTimer = setTimeout(step, interval);
   }
 
   rollTimer = setTimeout(step, 40);
 }
 
-function finishRoll(targets){
+function stopRoll(){
+  if(!state.picking) return;
+
   state.picking = false;
   clearTimeout(rollTimer);
 
+  const pool = state.students;
+  const want = state.pickCount;
+  const n = Math.min(want, pool.length);
+  const targets = pickCandidates(n);
+
+  if(!targets.length){
+    resetStage();
+    return;
+  }
+
+  // 揭晓
   resultBox.classList.remove('rolling');
   void resultBox.offsetWidth;
   resultBox.classList.add('winner');
@@ -1319,6 +1318,7 @@ function finishRoll(targets){
   const records = targets.map((t, i) => ({ num: t.num, time: now + i }));
   state.history = records.concat(state.history).slice(0, 120);
 
+  elPickBtn.classList.remove('stopping');
   elPickBtn.disabled = false;
   elPickTxt.textContent = '继续点名';
 
@@ -1338,14 +1338,21 @@ function finishRoll(targets){
   save();
 }
 
-/* ==================== 人数选择器 ==================== */
+/* ★ 按钮：点击行为依赖模式 */
+elPickBtn.addEventListener('click', () => {
+  if(state.picking){
+    // 只有手动模式允许点击停止
+    if(state.manual) stopRoll();
+    return;
+  }
+  startRoll();
+});
+
+/* ============ 人数选择器 ============ */
 function updatePickCount(){
   $('cpNum').textContent = state.pickCount;
-  $('cpMinus').disabled = state.pickCount <= 1;
-  $('cpPlus').disabled = state.pickCount >= MAX_PICK;
-  elPickTxt.textContent = state.picking
-    ? '抽取中…'
-    : (state.pickCount > 1 ? '抽 ' + state.pickCount + ' 个' : '开始点名');
+  $('cpMinus').disabled = state.pickCount <= 1 || state.picking;
+  $('cpPlus').disabled = state.pickCount >= MAX_PICK || state.picking;
 }
 
 $('cpMinus').addEventListener('click', () => {
@@ -1365,9 +1372,7 @@ $('cpPlus').addEventListener('click', () => {
   }
 });
 
-/* ==================== 事件绑定 ==================== */
-elPickBtn.addEventListener('click', startRoll);
-
+/* ============ 事件绑定 ============ */
 $('rangeBtn').addEventListener('click', applyRange);
 ['rangeStart', 'rangeEnd'].forEach(id => {
   $(id).addEventListener('keydown', e => {
@@ -1398,6 +1403,18 @@ $('numInput').addEventListener('keydown', e => {
 $('noRepeat').addEventListener('change', e => {
   state.noRepeat = e.target.checked;
   toast(state.noRepeat ? '不重复模式：开启' : '不重复模式：关闭');
+  save();
+});
+
+/* ★ 手动停止模式开关 */
+$('manualMode').addEventListener('change', e => {
+  if(state.picking){
+    e.target.checked = state.manual;
+    toast('抽取中，无法切换模式');
+    return;
+  }
+  state.manual = e.target.checked;
+  toast(state.manual ? '手动停止：开启（点停止才定格）' : '手动停止：关闭（自动定格）');
   save();
 });
 
@@ -1468,6 +1485,7 @@ $('bulkOk').addEventListener('click', () => {
 });
 
 $('resetBtn').addEventListener('click', () => {
+  if(state.picking){ toast('抽取中，请先停止'); return; }
   if(!state.students.length){ toast('当前没有名单'); return; }
   if(!confirm('确定清空所有点名记录和次数吗？\n（名单会保留）')) return;
 
@@ -1481,18 +1499,26 @@ $('resetBtn').addEventListener('click', () => {
   toast('✓ 已清空点名记录');
 });
 
+/* 空格键 */
 window.addEventListener('keydown', e => {
   if(e.code !== 'Space') return;
   const tag = (e.target.tagName || '').toUpperCase();
   if(tag === 'INPUT' || tag === 'TEXTAREA') return;
   if(modalMask.classList.contains('show')) return;
   e.preventDefault();
-  if(!state.picking) startRoll();
+
+  if(state.picking){
+    // 自动模式下按空格无效（正在自动滚动）；手动模式下按空格可以停止
+    if(state.manual) stopRoll();
+    return;
+  }
+  startRoll();
 });
 
-/* ==================== 初始化 ==================== */
+/* ============ 初始化 ============ */
 load();
 $('noRepeat').checked = state.noRepeat;
+$('manualMode').checked = state.manual;
 $('soundBtn').textContent = state.sound ? '🔊' : '🔇';
 $('soundBtn').classList.toggle('off', !state.sound);
 $('rangeStart').value = state.rangeStart;
