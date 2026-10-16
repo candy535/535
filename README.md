@@ -43,7 +43,7 @@ python -m http.server 8080
 
 **方式三：在线体验**
 
-访问 GitHub Pages 部署地址即可（如果你已 Fork 并开启 Pages）。
+访问 GitHub Pages 部署地址:https://candy535.github.io/535/
 
 ---
 
