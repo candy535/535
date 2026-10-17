@@ -338,7 +338,6 @@ main{
 .pick-btn:active{transform:translateY(1px) scale(.98);}
 .pick-btn:disabled{cursor:not-allowed;animation:none;box-shadow:0 10px 34px -12px rgba(168,85,247,.45);}
 
-/* 手动模式正在滚动 —— 变成红色停止 */
 .pick-btn.stopping{
   background:linear-gradient(135deg,#f472b6,#ef4444 55%,#f97316);
   animation:stopGlow 1s ease-in-out infinite;
@@ -410,7 +409,6 @@ main{
 .switch-label{font-size:.78rem;color:#94a3b8;letter-spacing:.06em;}
 .switch:hover .switch-label{color:#e2e8f0;}
 
-/* 手动模式开关的强调色 */
 .switch.manual input:checked + .slider{
   background:linear-gradient(135deg,#f472b6,#ef4444);
   box-shadow:0 0 18px rgba(239,68,68,.55);
@@ -491,61 +489,299 @@ main{
 .rank-count{font-size:.7rem;color:#64748b;width:16px;text-align:right;
   font-variant-numeric:tabular-nums;flex-shrink:0;}
 
-.modal-mask{
-  position:fixed;inset:0;z-index:200;
-  background:rgba(4,4,12,.72);backdrop-filter:blur(10px);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:.26s;
-}
-.modal-mask.show{opacity:1;pointer-events:auto;}
-.modal{
-  width:min(520px,92vw);
-  background:linear-gradient(160deg,#15152e,#0b0b18);
-  border:1px solid rgba(255,255,255,.11);
-  border-radius:22px;padding:26px;
-  box-shadow:0 40px 90px -24px rgba(0,0,0,1), inset 0 1px 0 rgba(255,255,255,.07);
-  transform:translateY(16px) scale(.96);
-  transition:.34s cubic-bezier(.2,.9,.3,1.35);
-}
-.modal-mask.show .modal{transform:none;}
-.modal h3{font-size:1rem;font-weight:800;letter-spacing:.08em;margin-bottom:6px;}
-.modal p{font-size:.76rem;color:#64748b;margin-bottom:16px;letter-spacing:.04em;line-height:1.8;}
-.modal textarea{
-  width:100%;height:190px;resize:vertical;
-  padding:14px;border-radius:14px;
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.1);
-  color:#e2e8f0;font-size:.88rem;line-height:1.9;outline:none;
-  font-family:inherit;transition:.22s;
-  font-variant-numeric:tabular-nums;
-}
-.modal textarea:focus{border-color:rgba(34,211,238,.55);box-shadow:0 0 0 3px rgba(34,211,238,.12);}
-.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;}
-.btn{
-  padding:11px 26px;border-radius:12px;border:none;cursor:pointer;
-  font-size:.82rem;font-weight:700;letter-spacing:.1em;
-  font-family:inherit;transition:.22s;
-}
-.btn.ghost{background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid rgba(255,255,255,.09);}
-.btn.ghost:hover{background:rgba(255,255,255,.12);color:#fff;}
-.btn.primary{
-  background:linear-gradient(135deg,#22d3ee,#a855f7);
-  color:#fff;box-shadow:0 10px 30px -10px rgba(168,85,247,.9);
-}
-.btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px -10px rgba(168,85,247,1);}
-
+/* ★ 统一为 Win7 风格的 Toast 提示 */
 .toast{
-  position:fixed;left:50%;bottom:44px;transform:translate(-50%,20px);
-  padding:12px 26px;border-radius:14px;
-  background:rgba(15,15,32,.94);
-  border:1px solid rgba(255,255,255,.13);
-  color:#e2e8f0;font-size:.82rem;letter-spacing:.06em;
-  backdrop-filter:blur(16px);
-  box-shadow:0 20px 50px -16px rgba(0,0,0,1);
-  opacity:0;transition:.3s cubic-bezier(.2,1,.4,1);z-index:300;
+  position:fixed;
+  left:50%;
+  top:30px;
+  transform:translate(-50%, -20px);
+  padding:10px 24px;
+  background:#f0f4f9;
+  border:1px solid #7b93aa;
+  border-radius:4px;
+  color:#222;
+  font-size:13px;
+  font-weight:500;
+  box-shadow:0 4px 20px rgba(0,0,0,0.4), inset 0 1px 0 #fff;
+  opacity:0;
+  transition:.3s cubic-bezier(.2,1,.4,1);
+  z-index:3000;
   pointer-events:none;
 }
-.toast.show{opacity:1;transform:translate(-50%,0);}
+.toast.show{
+  transform:translate(-50%, 0);
+  opacity:1;
+}
+
+/* ★ 欢迎通知（Win11 风格） */
+.welcome-toast{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:400;
+  min-width:440px;
+  max-width:calc(100vw - 48px);
+  padding:16px 24px 18px;
+  border-radius:16px;
+  background:linear-gradient(135deg, rgba(34,197,94,.96), rgba(16,185,129,.94));
+  color:#fff;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:stretch;
+  justify-content:center;
+  box-shadow:
+    0 24px 60px -16px rgba(16,185,129,.85),
+    0 0 0 1px rgba(255,255,255,.22) inset,
+    0 0 48px rgba(34,197,94,.5);
+  border:1px solid rgba(255,255,255,.28);
+  transform:translateX(calc(100% + 40px));
+  opacity:0;
+  transition:transform .6s cubic-bezier(.2,1,.3,1), opacity .45s ease;
+  pointer-events:none;
+}
+.welcome-toast::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent);
+  border-radius:16px 16px 0 0;
+}
+.welcome-toast.show{
+  transform:translateX(0);
+  opacity:1;
+  pointer-events:auto;
+}
+.welcome-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.18em;
+  color:#dcfce7;
+  opacity:.92;
+  padding-bottom:9px;
+  border-bottom:1px solid rgba(255,255,255,.24);
+  width:100%;
+}
+.welcome-head svg{
+  width:17px;
+  height:17px;
+  flex-shrink:0;
+  animation:gearSpin 4.5s linear infinite;
+  filter:drop-shadow(0 0 6px rgba(255,255,255,.6));
+}
+@keyframes gearSpin{to{transform:rotate(360deg)}}
+.welcome-msg{
+  font-size:1.06rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  white-space:nowrap;
+  text-shadow:0 0 18px rgba(255,255,255,.35);
+}
+
+/* ★ 操作成功通知 */
+.action-toast{
+  z-index:401;
+  padding:22px 28px;
+  bottom:24px;
+}
+.action-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  font-size:1.05rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  color:#fff;
+  text-shadow:0 0 18px rgba(255,255,255,.4);
+  white-space:nowrap;
+}
+.action-row svg{
+  width:24px;
+  height:24px;
+  flex-shrink:0;
+  filter:drop-shadow(0 0 10px rgba(255,255,255,.7));
+}
+
+.welcome-toast.show + .action-toast.show{
+  bottom:120px;
+}
+
+/* ★ 复古 Windows 7 风格弹窗通用样式 */
+.win7-modal-mask {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.35);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+.win7-modal-mask.show { opacity: 1; pointer-events: auto; }
+.win7-modal {
+  width: 400px; background: #fff;
+  border-radius: 6px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.8);
+  border: 2px solid #7b93aa; overflow: hidden;
+  transform: scale(0.95); transition: transform 0.2s;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  position: relative;
+}
+.win7-modal-mask.show .win7-modal { transform: scale(1); }
+
+/* 增强的极亮红色闪烁动画 */
+@keyframes errorFlash {
+  0%, 100% { 
+    border-color: #7b93aa; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.8); 
+  }
+  15%, 85% {
+    border-color: #ff0000;
+    box-shadow: 
+      0 0 0 3px #ff0000, 
+      0 0 20px 10px rgba(255,0,0,0.8), 
+      0 10px 30px rgba(0,0,0,0.5);
+  }
+  30%, 70% {
+    border-color: #ff0000;
+    box-shadow: 
+      0 0 0 5px #ff0000, 
+      0 0 35px 15px rgba(255,0,0,0.9), 
+      inset 0 0 15px rgba(255,0,0,0.6), 
+      0 10px 30px rgba(0,0,0,0.5);
+  }
+  50% {
+    border-color: #ff5555;
+    box-shadow: 
+      0 0 0 8px #ff0000, 
+      0 0 50px 25px rgba(255,0,0,1), 
+      inset 0 0 25px rgba(255,0,0,0.8), 
+      0 10px 30px rgba(0,0,0,0.5);
+  }
+}
+.win7-modal.error-flash {
+  animation: errorFlash 0.4s ease-in-out 3;
+}
+
+.win7-titlebar {
+  background: linear-gradient(to bottom, #a0b5c8, #758b9e);
+  padding: 6px 10px; display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid #51697e;
+}
+.win7-title { color: #fff; font-size: 13px; text-shadow: 0 1px 2px rgba(0,0,0,0.6); font-weight: 500; }
+.win7-close {
+  background: linear-gradient(to bottom, #f57f68, #d95137);
+  color: #fff; border: 1px solid #b13b21; border-radius: 3px;
+  width: 22px; height: 18px; font-size: 11px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+}
+.win7-close:hover { background: linear-gradient(to bottom, #fb8e79, #e05f44); }
+.win7-close:active { background: linear-gradient(to bottom, #d95137, #b13b21); }
+.win7-body {
+  padding: 22px 20px; display: flex; gap: 16px; align-items: flex-start;
+  background: #f4f6f9;
+}
+.win7-icon { width: 48px; height: 48px; flex-shrink: 0; }
+.win7-text { padding-top: 4px; }
+.win7-text-main { font-size: 14px; color: #222; margin-bottom: 8px; font-weight: 600; }
+.win7-text-sub { font-size: 12px; color: #666; }
+.win7-footer {
+  padding: 14px 20px; background: #eaedf2; border-top: 1px solid #d0d7e0;
+  display: flex; justify-content: flex-end; gap: 12px;
+}
+.win7-btn {
+  padding: 6px 24px; font-size: 13px; border-radius: 3px; cursor: pointer;
+  background: linear-gradient(to bottom, #fcfcfc, #e6e6e6);
+  border: 1px solid #aaa; color: #333;
+  box-shadow: inset 0 1px 0 #fff;
+  font-family: inherit;
+}
+.win7-btn:hover { background: linear-gradient(to bottom, #eaf2fb, #d8e5f3); border-color: #7eb4ea; }
+.win7-btn:active { background: linear-gradient(to bottom, #cde2f7, #b5d3f0); }
+.win7-btn-primary { border-color: #7eb4ea; }
+
+/* ★ 底部金黄色作者栏 */
+.author-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: gold;
+  color: black;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 14px;
+  z-index: 9999;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.author-text {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  background: linear-gradient(
+    90deg,
+    #555 0%,
+    #555 32%,
+    #ff7b00 38%,
+    #ffa500 44%,
+    #ffb347 48%,
+    #ffa500 52%,
+    #ff7b00 58%,
+    #555 64%,
+    #555 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: authorSweep 3.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+@keyframes authorSweep {
+  0%   { background-position: 0% 0; }
+  100% { background-position: -200% 0; }
+}
+.author-close {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 16px;
+  color: #333;
+  padding: 0 5px;
+  transition: color 0.2s;
+}
+.author-close:hover {
+  color: red;
+}
+
+@media (max-width:520px){
+  .welcome-toast{
+    right:12px;left:12px;bottom:16px;
+    min-width:0;
+    padding:14px 18px 16px;
+  }
+  .welcome-msg{font-size:.94rem;white-space:normal;}
+  .welcome-head{font-size:.76rem;letter-spacing:.14em;}
+  .action-toast{padding:18px 20px;}
+  .action-row{font-size:.94rem;white-space:normal;}
+  .action-row svg{width:20px;height:20px;}
+  .welcome-toast.show + .action-toast.show{bottom:110px;}
+  .win7-modal{width: 90vw;}
+}
 
 #fx{position:fixed;inset:0;pointer-events:none;z-index:150;}
 
@@ -650,7 +886,6 @@ main{
             <span class="slider"></span>
             <span class="switch-label">不重复模式</span>
           </label>
-          <!-- ★ 新增：手动停止模式开关 -->
           <label class="switch manual">
             <input type="checkbox" id="manualMode">
             <span class="slider"></span>
@@ -685,18 +920,88 @@ main{
   </main>
 </div>
 
-<div class="modal-mask" id="modalMask">
-  <div class="modal">
-    <h3>批量导入号数</h3>
-    <p>支持换行、逗号、空格、顿号分隔，也支持范围写法：<br>
-       例如 <b style="color:#67e8f9">1-50</b> 或 <b style="color:#67e8f9">1,3,5,8-20</b></p>
-    <textarea id="bulkInput" placeholder="1-50&#10;或&#10;1,3,5,8,13&#10;或&#10;1 2 3 4 5"></textarea>
-    <div class="modal-actions">
-      <button class="btn ghost" id="bulkCancel">取消</button>
-      <button class="btn primary" id="bulkOk">导入</button>
+<!-- ★ Win7 风格批量导入弹窗 -->
+<div class="win7-modal-mask" id="bulkModal">
+  <div class="win7-modal" style="width: 520px;">
+    <div class="win7-titlebar">
+      <span class="win7-title">批量导入号数</span>
+      <button class="win7-close" id="bulkCloseBtn">✕</button>
+    </div>
+    <div class="win7-body" style="display: block; background: #fff; padding: 16px;">
+      <div class="win7-text-sub" style="margin-bottom: 12px; color:#333;">
+        支持换行、逗号、空格、顿号分隔，也支持范围写法：<br>
+        例如 <b style="color:#005a9e;">1-50</b> 或 <b style="color:#005a9e;">1,3,5,8-20</b>
+      </div>
+      <textarea id="bulkInput" style="width: 100%; height: 180px; padding: 10px; border: 1px solid #7b93aa; border-radius: 3px; resize: vertical; outline: none; font-family: inherit; font-size: 13px;" placeholder="1-50&#10;或&#10;1,3,5,8,13&#10;或&#10;1 2 3 4 5"></textarea>
+    </div>
+    <div class="win7-footer">
+      <button class="win7-btn win7-btn-primary" id="bulkOk">导入</button>
+      <button class="win7-btn" id="bulkCancel">取消</button>
     </div>
   </div>
 </div>
+
+<!-- ★ Win7 风格确认弹窗（动态内容） -->
+<div class="win7-modal-mask" id="win7Modal">
+  <div class="win7-modal">
+    <div class="win7-titlebar">
+      <span class="win7-title" id="win7Title">确认</span>
+      <button class="win7-close" id="win7CloseBtn">✕</button>
+    </div>
+    <div class="win7-body">
+      <div class="win7-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="22" fill="#eef4fb" stroke="#b3cfea" stroke-width="2"/>
+          <path d="M24 12L12 36h24L24 12z" fill="#fde047" stroke="#ca8a04" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="22" y="20" width="4" height="8" rx="2" fill="#000"/>
+          <circle cx="24" cy="31" r="2" fill="#000"/>
+        </svg>
+      </div>
+      <div class="win7-text">
+        <div class="win7-text-main" id="win7MainText">确定清空所有点名记录和次数吗？</div>
+        <div class="win7-text-sub" id="win7SubText">（名单会保留）</div>
+      </div>
+    </div>
+    <div class="win7-footer">
+      <button class="win7-btn win7-btn-primary" id="win7OkBtn">确定</button>
+      <button class="win7-btn" id="win7CancelBtn">取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- ★ 欢迎通知（Win11 风格） -->
+<div class="welcome-toast" id="welcomeToast">
+  <div class="welcome-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+    <span>设置</span>
+  </div>
+  <div class="welcome-msg">🎉欢迎使用智能点名系统🎉</div>
+</div>
+
+<!-- ★ 操作成功通知 -->
+<div class="welcome-toast action-toast" id="actionToast">
+  <div class="action-row">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+    </svg>
+    <span id="actionToastText">已成功清空记录</span>
+  </div>
+</div>
+
+<audio id="welcomeAudio"
+       preload="auto"
+       playsinline
+       webkit-playsinline
+       src="https://mp3tourl.com/audio/1783209968003-bfeccbf7-a791-424a-a63d-049b611e06a1.mp3"
+       style="display:none"></audio>
+
+<audio id="errorAudio"
+       preload="auto"
+       src="https://mp3tourl.com/audio/1783219880996-f71ca363-7ee8-4e04-bfd0-7128a1caa86d.mp3"
+       style="display:none"></audio>
 
 <canvas id="fx"></canvas>
 
@@ -717,7 +1022,7 @@ const state = {
   pickCount: 1,
   picking: false,
   noRepeat: true,
-  manual: false,   // ★ 手动停止模式
+  manual: false,
   sound: true
 };
 
@@ -1170,27 +1475,37 @@ function applyRange(){
   const count = b - a + 1;
 
   if(state.students.length){
-    const ok = confirm(`将用 ${a} - ${b} 号替换当前名单（共 ${state.students.length} 个），并清空点名记录。\n\n确定继续吗？`);
-    if(!ok){
-      $('rangeStart').value = state.rangeStart;
-      $('rangeEnd').value = state.rangeEnd;
-      return;
-    }
+    showWin7Confirm(
+      '替换名单',
+      `将用 ${a} - ${b} 号替换当前名单吗？`,
+      `当前共 ${state.students.length} 个号数，替换后将清空点名记录。`,
+      () => {
+        state.students = buildRange(a, b);
+        state.rangeStart = a;
+        state.rangeEnd = b;
+        state.history = [];
+        state.round = 1;
+        $('rangeStart').value = a;
+        $('rangeEnd').value = b;
+        resetStage();
+        renderAll();
+        save();
+        toast(`✓ 已生成 ${a} - ${b} 号，共 ${count} 个`);
+      }
+    );
+  } else {
+    state.students = buildRange(a, b);
+    state.rangeStart = a;
+    state.rangeEnd = b;
+    state.history = [];
+    state.round = 1;
+    $('rangeStart').value = a;
+    $('rangeEnd').value = b;
+    resetStage();
+    renderAll();
+    save();
+    toast(`✓ 已生成 ${a} - ${b} 号，共 ${count} 个`);
   }
-
-  state.students = buildRange(a, b);
-  state.rangeStart = a;
-  state.rangeEnd = b;
-  state.history = [];
-  state.round = 1;
-
-  $('rangeStart').value = a;
-  $('rangeEnd').value = b;
-
-  resetStage();
-  renderAll();
-  save();
-  toast(`✓ 已生成 ${a} - ${b} 号，共 ${count} 个`);
 }
 
 /* ============ 抽取逻辑 ============ */
@@ -1237,18 +1552,16 @@ function startRoll(){
   resultBox.classList.add('rolling');
 
   if(state.manual){
-    // 手动模式：无限滚动，点击停止才停
     elNameSub.textContent = '点击「停止」定格结果';
     elNameSub.className = 'name-sub live';
     elPickBtn.classList.add('stopping');
-    elPickBtn.disabled = false;   // 可点击停止
+    elPickBtn.disabled = false;
     elPickTxt.textContent = '停 止';
   }else{
-    // 自动模式：3 秒后自动定格
     elNameSub.textContent = '正在随机抽取…';
     elNameSub.className = 'name-sub live';
     elPickBtn.classList.remove('stopping');
-    elPickBtn.disabled = true;    // 滚动中禁用
+    elPickBtn.disabled = true;
     elPickTxt.textContent = '抽取中…';
   }
 
@@ -1269,7 +1582,6 @@ function startRoll(){
     }
 
     if(!state.manual){
-      // 自动模式：累积时间，到点就停
       elapsed += interval;
       if(elapsed >= duration){
         stopRoll();
@@ -1301,7 +1613,6 @@ function stopRoll(){
     return;
   }
 
-  // 揭晓
   resultBox.classList.remove('rolling');
   void resultBox.offsetWidth;
   resultBox.classList.add('winner');
@@ -1338,10 +1649,8 @@ function stopRoll(){
   save();
 }
 
-/* ★ 按钮：点击行为依赖模式 */
 elPickBtn.addEventListener('click', () => {
   if(state.picking){
-    // 只有手动模式允许点击停止
     if(state.manual) stopRoll();
     return;
   }
@@ -1406,7 +1715,6 @@ $('noRepeat').addEventListener('change', e => {
   save();
 });
 
-/* ★ 手动停止模式开关 */
 $('manualMode').addEventListener('change', e => {
   if(state.picking){
     e.target.checked = state.manual;
@@ -1429,18 +1737,98 @@ $('soundBtn').addEventListener('click', e => {
   save();
 });
 
-const modalMask = $('modalMask');
+/* ============ Win7 风格确认弹窗逻辑 ============ */
+const win7Modal = $('win7Modal');
+const win7ModalInner = document.querySelector('#win7Modal .win7-modal');
+const win7OkBtn = $('win7OkBtn');
+const win7CancelBtn = $('win7CancelBtn');
+const win7CloseBtn = $('win7CloseBtn');
+const errorAudio = $('errorAudio');
+let currentWin7OkCallback = null;
+
+function closeWin7Modal() {
+  win7Modal.classList.remove('show');
+  win7ModalInner.classList.remove('error-flash');
+  currentWin7OkCallback = null;
+}
+
+function showWin7Confirm(title, content, subContent, onOk) {
+  $('win7Title').textContent = title;
+  $('win7MainText').textContent = content;
+  $('win7SubText').textContent = subContent;
+  currentWin7OkCallback = onOk;
+  
+  win7Modal.classList.add('show');
+}
+
+win7CancelBtn.addEventListener('click', closeWin7Modal);
+win7CloseBtn.addEventListener('click', closeWin7Modal);
+
+win7OkBtn.addEventListener('click', () => {
+  const cb = currentWin7OkCallback;
+  closeWin7Modal();
+  if (typeof cb === 'function') {
+    cb();
+  }
+});
+
+// 点击遮罩红框闪烁
+win7Modal.addEventListener('click', (e) => {
+  if (e.target === win7Modal) {
+    try {
+      errorAudio.currentTime = 0;
+      errorAudio.volume = 1.0;
+      errorAudio.play().catch(() => {});
+    } catch(err) {}
+    win7ModalInner.classList.remove('error-flash');
+    void win7ModalInner.offsetWidth;
+    win7ModalInner.classList.add('error-flash');
+  }
+});
+win7ModalInner.addEventListener('animationend', (e) => {
+  if (e.animationName === 'errorFlash') {
+    win7ModalInner.classList.remove('error-flash');
+  }
+});
+
+$('resetBtn').addEventListener('click', () => {
+  if(state.picking){ toast('抽取中，请先停止'); return; }
+  if(!state.students.length){ toast('当前没有名单'); return; }
+  
+  showWin7Confirm(
+    '确认清空',
+    '确定清空所有点名记录和次数吗？',
+    '（名单会保留）',
+    () => {
+      state.students.forEach(s => { s.count = 0; s.pickedThisRound = false; });
+      state.history = [];
+      state.round = 1;
+      resetStage();
+      renderAll();
+      save();
+      showActionToast('已成功清空记录');
+    }
+  );
+});
+
+/* ============ Win7 风格批量导入弹窗逻辑 ============ */
+const bulkModal = $('bulkModal');
+const bulkInput = $('bulkInput');
+
 $('bulkBtn').addEventListener('click', () => {
-  $('bulkInput').value = '';
-  modalMask.classList.add('show');
-  setTimeout(() => $('bulkInput').focus(), 200);
+  bulkInput.value = '';
+  bulkModal.classList.add('show');
+  setTimeout(() => bulkInput.focus(), 200);
 });
-$('bulkCancel').addEventListener('click', () => modalMask.classList.remove('show'));
-modalMask.addEventListener('click', e => {
-  if(e.target === modalMask) modalMask.classList.remove('show');
+
+$('bulkCancel').addEventListener('click', () => bulkModal.classList.remove('show'));
+$('bulkCloseBtn').addEventListener('click', () => bulkModal.classList.remove('show'));
+bulkModal.addEventListener('click', e => {
+  if(e.target === bulkModal) bulkModal.classList.remove('show');
 });
+
 $('bulkOk').addEventListener('click', () => {
-  const raw = $('bulkInput').value;
+  const raw = bulkInput.value;
   const parts = raw.split(/[\n,，、;；\s]+/).map(s => s.trim()).filter(Boolean);
   if(!parts.length){ toast('没有识别到有效号数'); return; }
 
@@ -1478,37 +1866,36 @@ $('bulkOk').addEventListener('click', () => {
     $('rangeEnd').value = state.rangeEnd;
   }
 
-  modalMask.classList.remove('show');
+  bulkModal.classList.remove('show');
   renderAll();
   save();
   toast(`导入完成：新增 ${added} 个号数${dup ? '，跳过重复 ' + dup + ' 个' : ''}`);
 });
 
-$('resetBtn').addEventListener('click', () => {
-  if(state.picking){ toast('抽取中，请先停止'); return; }
-  if(!state.students.length){ toast('当前没有名单'); return; }
-  if(!confirm('确定清空所有点名记录和次数吗？\n（名单会保留）')) return;
-
-  state.students.forEach(s => { s.count = 0; s.pickedThisRound = false; });
-  state.history = [];
-  state.round = 1;
-
-  resetStage();
-  renderAll();
-  save();
-  toast('✓ 已清空点名记录');
-});
-
-/* 空格键 */
+/* ============ 全局按键监听 ============ */
 window.addEventListener('keydown', e => {
+  // 如果 Win7 确认弹窗开着
+  if (win7Modal.classList.contains('show')) {
+    if (e.code === 'Escape') closeWin7Modal();
+    if (e.code === 'Enter') win7OkBtn.click();
+    e.stopPropagation();
+    return; 
+  }
+  // 如果 Win7 批量导入弹窗开着
+  if (bulkModal.classList.contains('show')) {
+    if (e.code === 'Escape') bulkModal.classList.remove('show');
+    // 回车在 textarea 中是换行，不拦截
+    e.stopPropagation();
+    return;
+  }
+
+  // 原本的点名空格逻辑
   if(e.code !== 'Space') return;
   const tag = (e.target.tagName || '').toUpperCase();
   if(tag === 'INPUT' || tag === 'TEXTAREA') return;
-  if(modalMask.classList.contains('show')) return;
   e.preventDefault();
 
   if(state.picking){
-    // 自动模式下按空格无效（正在自动滚动）；手动模式下按空格可以停止
     if(state.manual) stopRoll();
     return;
   }
@@ -1527,9 +1914,167 @@ updatePickCount();
 showReady();
 renderAll();
 
-['click', 'keydown'].forEach(ev => {
-  window.addEventListener(ev, initAudio, { once: true });
+/* ==========================================================
+   欢迎音乐 & 成功通知音乐：极简可靠方案
+   ========================================================== */
+const WELCOME_MUSIC_URL = 'https://mp3tourl.com/audio/1783209968003-bfeccbf7-a791-424a-a63d-049b611e06a1.mp3';
+const welcomeAudioEl = document.getElementById('welcomeAudio');
+const WELCOME_KEY = 'smart-rollcall-welcome-v1';
+
+let welcomeShouldPlay = false;
+let welcomeMusicPlayed = false;
+let welcomeHideTimer = null;
+let actionHideTimer = null;
+
+/* 首次访问判定 */
+(function checkFirstVisit(){
+  let shown = false;
+  try{ shown = localStorage.getItem(WELCOME_KEY) === '1'; }catch(e){}
+  if(!shown){
+    welcomeShouldPlay = true;
+    try{ localStorage.setItem(WELCOME_KEY, '1'); }catch(e){}
+  }
+})();
+
+/* 从头开始播放（含重置 currentTime），供欢迎通知和成功通知共用 */
+function playMusicFresh(){
+  if(!welcomeAudioEl) return;
+  try{ welcomeAudioEl.currentTime = 0; }catch(e){}
+  welcomeAudioEl.volume = 0.85;
+  let p;
+  try{ p = welcomeAudioEl.play(); }catch(e){ return; }
+  if(p && typeof p.then === 'function'){
+    p.then(() => { welcomeMusicPlayed = true; }).catch(() => {});
+  }else{
+    welcomeMusicPlayed = true;
+  }
+}
+
+/* 欢迎通知阶段的尝试播放：若暂停则播放，若已在响则跳过 */
+function tryPlayWelcomeMusic(){
+  if(welcomeMusicPlayed) return;
+  if(!welcomeAudioEl) return;
+  if(!welcomeAudioEl.paused && !welcomeAudioEl.ended){
+    welcomeMusicPlayed = true;
+    return;
+  }
+  playMusicFresh();
+}
+
+function stopWelcomeMusic(){
+  if(!welcomeAudioEl) return;
+  if(!welcomeAudioEl.paused){
+    try{
+      welcomeAudioEl.pause();
+      welcomeAudioEl.currentTime = 0;
+    }catch(e){}
+  }
+}
+
+function showWelcomeToast(durationMs){
+  const el = document.getElementById('welcomeToast');
+  if(!el) return;
+  clearTimeout(welcomeHideTimer);
+  el.classList.add('show');
+  welcomeHideTimer = setTimeout(() => {
+    el.classList.remove('show');
+    stopWelcomeMusic();
+  }, durationMs);
+}
+
+/* 手势兜底：任何位置、任何类型的手势都会调用 */
+function onAnyGesture(){
+  initAudio();
+  if(!welcomeShouldPlay) return;
+  if(welcomeMusicPlayed) return;
+
+  const el = document.getElementById('welcomeToast');
+  if(el && !el.classList.contains('show')){
+    showWelcomeToast(5000);
+  }
+  tryPlayWelcomeMusic();
+}
+
+['pointerdown','touchstart','mousedown','keydown','click'].forEach(ev => {
+  window.addEventListener(ev, onAnyGesture, { capture: true, passive: true });
 });
+
+if(welcomeAudioEl){
+  welcomeAudioEl.addEventListener('canplaythrough', () => {
+    if(welcomeShouldPlay && !welcomeMusicPlayed){
+      const el = document.getElementById('welcomeToast');
+      if(el && el.classList.contains('show')) tryPlayWelcomeMusic();
+    }
+  }, { once: true });
+  welcomeAudioEl.addEventListener('error', () => {
+    console.warn('[welcome-music] 音频加载失败，可能被防盗链拦截');
+  }, { once: true });
+}
+
+/* 首次访问：600ms 后滑出欢迎通知 + 尝试播放音乐 */
+if(welcomeShouldPlay){
+  setTimeout(() => {
+    showWelcomeToast(5000);
+    tryPlayWelcomeMusic();
+  }, 600);
+}
+
+/* ============ ★ 通用操作成功通知（滑出式绿色长方形 + 音乐） ============ */
+function showActionToast(text, durationMs = 5000){
+  const el = document.getElementById('actionToast');
+  if(!el) return;
+  const txt = document.getElementById('actionToastText');
+  if(txt) txt.textContent = text;
+
+  /* 若欢迎通知还在显示，先收起（避免重叠），但保留其音乐继续播 */
+  const w = document.getElementById('welcomeToast');
+  if(w && w.classList.contains('show')){
+    w.classList.remove('show');
+    clearTimeout(welcomeHideTimer);
+  }
+
+  /* 停止当前音乐（防止与欢迎音乐重叠） */
+  stopWelcomeMusic();
+
+  /* 显示成功通知 */
+  clearTimeout(actionHideTimer);
+  el.classList.remove('show');
+  void el.offsetWidth;   /* 强制重排确保动画重新触发 */
+  el.classList.add('show');
+
+  /* 从头播放音乐，与通知滑入同步 */
+  playMusicFresh();
+
+  /* 5 秒后收起 + 停止音乐 */
+  actionHideTimer = setTimeout(() => {
+    el.classList.remove('show');
+    stopWelcomeMusic();
+  }, durationMs);
+}
 </script>
+
+  <!-- 底部金黄色作者栏 -->
+  <div class="author-bar" id="authorBar">
+    <span class="author-text">网页作者: expert1</span>
+    <span class="author-close" id="authorClose" title="关闭">✕</span>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const authorBar = document.getElementById('authorBar');
+      const authorClose = document.getElementById('authorClose');
+      
+      // 检查是否已经关闭过
+      if (localStorage.getItem('authorBarClosed') === 'true') {
+        authorBar.style.display = 'none';
+      }
+      
+      // 点击关闭按钮
+      authorClose.addEventListener('click', function() {
+        authorBar.style.display = 'none';
+        localStorage.setItem('authorBarClosed', 'true');
+      });
+    });
+  </script>
 </body>
 </html>
